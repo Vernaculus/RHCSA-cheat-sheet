@@ -409,19 +409,14 @@ Install and update software packages from Red Hat Network, a remote repository, 
 	more?
 
 Modify the system bootloader (New location in objectives)
+	vim /boot/grub/grub.conf
 	more?
-
-Configure a physical machine to host virtual guests
-	GUI
-Install Red Hat Enterprise Linux systems as virtual guests
-	GUI
-Configure systems to launch virtual machines at boot
-	GUI
-Configure network services to start automatically at boot
-	onboot in ifcfg
-	chkconfig network on
-
-Configure a system to run a default configuration HTTP server
+	
+(OLD) Configure a system to use an existing LDAP directory service for user and group information
+	system-config-authentication
+	dc=example,dc=com
+	
+(OLD) Configure a system to run a default configuration HTTP server
 	yum install httpd
 	service httpd start
 	chkonfig
@@ -431,9 +426,7 @@ Configure a system to run a default configuration HTTP server
 	iptables-save      ********ALWAYS SAVE YOUR IPTABLES********
 	vim /etc/httpd/conf/httpd.conf
 
-
-
-Configure a system to run a default configuration FTP server
+(OLD) Configure a system to run a default configuration FTP server
 	yum install vsftpd
 	service vsftpd start
 	chkconfig vsftpd on
@@ -446,9 +439,7 @@ Configure a system to run a default configuration FTP server
 	man -k _selinux .. man ftpd_selinux
 	semanage and restorecon	
 
-
-
-Configure a system to use time services
+(OLD) Configure a system to use time services
 	yum install ntpd
 	service ntpd start
 	chkconfig
@@ -457,7 +448,36 @@ Configure a system to use time services
 		iptables -I OUTPUT -p udp --sport 123 -j ACCEPT	
 		SAVE YOUR IPTABLES (iptables-save)
 
-Install and update software packages from Red Hat Network, a remote repository, or from the local file system
+Manage basic networking
+=======================
+
+Configure IPv4 and IPv6 addresses
+	more?
+	
+Configure hostname resolution
+	more?
+	
+Configure network services to start automatically at boot
+	more?
+	
+Restrict network access using firewall-cmd/firewall
+	more?
+	
+
+(OLD) Configure and Manage Virtual Machines (Not name of orignal objective)
+===========================================
+
+Configure a physical machine to host virtual guests
+	GUI
+Install Red Hat Enterprise Linux systems as virtual guests
+	GUI
+Configure systems to launch virtual machines at boot
+	GUI
+Configure network services to start automatically at boot
+	onboot in ifcfg
+	chkconfig network on
+
+(OLD) Install and update software packages from Red Hat Network, a remote repository, or from the local file system
 	yum / rpm
 	vim /etc/yum.repos.d/
 		[name]
@@ -467,7 +487,7 @@ Install and update software packages from Red Hat Network, a remote repository, 
 	(REMEMBER THE TRAILING /)
 
 
-Update the kernel package appropriately to ensure a bootable system
+(OLD) Update the kernel package appropriately to ensure a bootable system
 	cat /etc/redhat-release
 	uname -r 
 	yum list installed kernel\*
@@ -477,16 +497,15 @@ Update the kernel package appropriately to ensure a bootable system
 	check:
 		/boot/grub.conf
 
-Kernel Packages	
+(OLD) Kernel Packages	
 	/lib/modules/VERSION/
 	lsmod
 	modprobe {modulename}
 	modinfo (shows parameters that module supports)
 	/etc/modprobe.d/local.conf
 	
-
-Modify the system bootloader
-	vim /boot/grub/grub.conf
+Manage users and groups
+=======================
 
 Create, delete, and modify local user accounts
 	useradd
@@ -500,16 +519,26 @@ Create, delete, and modify local groups and group memberships
 	groupadd
 	groupdel
 	groupmod
+	
+Configure superuser access
+	more?
 
-Configure a system to use an existing LDAP directory service for user and group information
-	system-config-authentication
-	dc=example,dc=com
+Manage security
+===============
 
-Configure firewall settings using system-config-firewall or iptables
+Configure firewall settings using firewall-cmd/firewalld
+	more?
+
+(OLD) Configure firewall settings using system-config-firewall or iptables
 	/etc/sysconfig/iptables
 	iptables -I INPUT -p tcp --dport 22 -j ACCEPT;
 	iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
 
+Manage default file permissions
+	more?
+	
+Configure key-based authentication for SSH
+	more?
 
 Set enforcing and permissive modes for SELinux
 	getenforce
@@ -530,8 +559,37 @@ Use boolean settings to modify system SELinux settings
 	getsebool -a | grep whatever
 	setsebool -P whateverbool on (DO NOT FORGET THE -P PERSISTENT)
 
-
 Diagnose and address routine SELinux policy violations
 	Install: setroubleshoot
 			 selinux-policy
+	
+Manage containers
+=================
+Find and retrieve container images from a remote registry
+	more?
+	
+Inspect container images
+	more?
+	
+Perform container management using commands such as podman and skopeo
+	more?
+	
+Build a container from a Containerfile
+	more?
+	
+Perform basic container management such as running, starting, stopping, and listing running containers
+	more?
+	
+Run a service inside a container
+	more?
+	
+Configure a container to start automatically as a systemd service
+	more?
+	
+Attach persistent storage to a container
+	more?
+	
+As with all Red Hat performance-based exams, configurations must persist after reboot without intervention.
+	more?
 
+	
