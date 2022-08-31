@@ -1,7 +1,9 @@
-# I copied this cheatsheat from ruthealee/RHCSA-cheat-sheet which, when I wrote this comment, was last updated in 2014.
+# Forked from ruthealee/RHCSA-cheat-sheet which, when I wrote this comment, was last updated in 2014.
+# The bulk of this work was done by ruthealee who deserves the preponderance of credit.
 # I'm updating this list for the rhcsa exam objectives located here: https://www.redhat.com/en/services/training/ex200-red-hat-certified-system-administrator-rhcsa-exam?section=Objectives
-# I left some of the objectives that were not present in the latest objectives list (link above) out of an abundance of caution and paranoia. Can I study too much?
-# I've marked the old objectives accordingly for the reader's awareness. Ctrl+F for "old" (case insensitive)
+# I left some of the objectives that were not present in the latest objectives list (08/30/2022 at link above) out of an abundance of caution and paranoia.
+# Can I study too much? I think not.
+# I've marked the old objectives accordingly for the reader's awareness. Ctrl+F for "old" (case insensitive).... Ctrl+G and Ctrl+Shift+G cycles down and up through results.
 
 
 Tests:
@@ -150,14 +152,17 @@ Securely transfer files between systems
 	
 Configure local storage
 =======================
-List, create, delete, and set partition type for primary, extended, and logical partitions
+(OLD) List, create, delete, and set partition type for primary, extended, and logical partitions
 	fdisk -l
 	fdisk /dev/XXX
 		*Remember* 4th partition must ALWAYS be extended
 		82/83 SWAP/8e LVM
-
+		
+List, create, delete partitions on MBR and GPT disks
+	more?
 
 Create and remove physical volumes, assign physical volumes to volume groups, and create and delete logical Volumes
+# NEED TO BREAK OUT INTO OBJECTIVES TO MATCH EXAM OBJECTIVES
 	pvcreate /dev/XXXX
 	vgcreate VGNAME PVNAME
 	vgextend VGNAME PVNAME
@@ -171,7 +176,7 @@ Create and remove physical volumes, assign physical volumes to volume groups, an
 	mount -r ro /dev/vgname/snapshotlv /snapmount <-- if it needs to be mounted
 
 
-Create and configure LUKS-encrypted partitions and logical volumes to prompt for password and mount a decrypted file system at boot
+(OLD) Create and configure LUKS-encrypted partitions and logical volumes to prompt for password and mount a decrypted file system at boot
 	Requires dm_crypt: lsmod grep dm_crypt ; modprobe dm_crypt
 	vim /etc/rc.init
 	yum install cryptsetup-luks
@@ -221,19 +226,24 @@ Add new partitions and logical volumes, and swap to a system non-destructively
 		resize2fs lv specifiedsize : e.g. resize2fs /dev/vg1/lv1 2G
 	Remount
 
-Create, mount, unmount, and use ext2, ext3, and ext4 file systems
+Create and configure file systems
+=================================
+(Old) Create, mount, unmount, and use ext2, ext3, and ext4 file systems
 	mkfs.ext[2|3|4] /dev/XXXX (for LVM: /dev/mapper/vg-lv)
 	mkswap
 	mount
 	umount
+	
+Create, mount, unmount, and use vfat, ext4, and xfs file systems
+	more?
 
-Mount, unmount, and use LUKS-encrypted file systems
+(OLD) Mount, unmount, and use LUKS-encrypted file systems
 	cryptsetup luksOpen /dev/xxx newname
 	mkdir mydata
 	mount /dev/mapper/newname /mydata
 	umount etc.
 
-Mount and unmount CIFS and NFS network file systems
+(OLD) Mount and unmount CIFS and NFS network file systems
 
 NFS
 	showmount -e instructor.example.com
@@ -275,21 +285,31 @@ Automount:
 
 		/etc/auto.ldap
 		* -rw instructor.exaple.com:/home/guests/&
+		
+Mount and unmount network file systems using NFS
+	more?
 
 
-Configure systems to mount ext4, LUKS-encrypted, and network file systems automatically
+(OLD) Configure systems to mount ext4, LUKS-encrypted, and network file systems automatically
 	Edit fstabs as above
+	
+Configure autofs
+	more?
 
-Extend existing unencrypted ext4-formatted logical volumes
+(OLD) Extend existing unencrypted ext4-formatted logical volumes
 	lvextend
 	resize2fs
+	
+Extend existing logical volumes
+	more?
+
 Create and configure set-GID directories for collaboration
 	mkdir
 	chown user:group file
 	chmod -R 770
 	chmod -R g+s
 
-Create and manage Access Control Lists (ACLs)
+(OLD) - Create and manage Access Control Lists (ACLs)
 	Must be configured on the partition
 		vim /etc/fstab
 			defaults,acl
@@ -307,7 +327,10 @@ Create and manage Access Control Lists (ACLs)
 Diagnose and correct file permission problems
 	tail /var/log/messages
 
-Configure networking and hostname resolution statically or dynamically
+Deploy, configure, and maintain systems
+=======================================
+
+(OLD - moved to different part of objectives) Configure networking and hostname resolution statically or dynamically
 
 	system-config-network
 
@@ -339,7 +362,7 @@ Configure networking and hostname resolution statically or dynamically
 
 	ifcfg eth* [up|down]
 
-Schedule tasks using cron
+(OLD) Schedule tasks using cron
 	man 5 crontab --> this has examples and field information
 	*    *    *    *    *  command to be executed
 	-    -    -    -    -
@@ -350,8 +373,14 @@ Schedule tasks using cron
 	|    |    +--------------- day of month (1 - 31)
 	|    +-------------------- hour (0 - 23)
 	+------------------------- min (0 - 59)
+	
+Schedule tasks using at and cron
+	more?
+	
+Start and stop services and configure services to start automatically at boot
+	more?
 
-Configure systems to boot into a specific runlevel automatically
+(OLD) Configure systems to boot into a specific runlevel automatically
 	vim /etc/inittab
 		# Default runlevel. The runlevels used are:
 	   0 - halt (Do NOT set initdefault to this)
@@ -363,13 +392,24 @@ Configure systems to boot into a specific runlevel automatically
 	   6 - reboot (Do NOT set initdefault to this)
 	
 	id:5:initdefault:
+			
+Configure systems to boot into a specific target automatically
+	more?
+	
+Configure time service clients
+	more?
 
-Install Red Hat Enterprise Linux automatically using Kickstart
+(OLD) Install Red Hat Enterprise Linux automatically using Kickstart
 	Boot from media, hit tab, and amend with ks=filelocation 
 	e.g. ks=http://instructor.example.com/ks.cfg
 	/root/anaconda-ks.cfg
 	system-config-kickstart (needs to be installed)
+	
+Install and update software packages from Red Hat Network, a remote repository, or from the local file system
+	more?
 
+Modify the system bootloader (New location in objectives)
+	more?
 
 Configure a physical machine to host virtual guests
 	GUI
