@@ -1,7 +1,7 @@
 # Forked from ruthealee/RHCSA-cheat-sheet which, when I wrote this comment, was last updated in 2014.
 # The bulk of this work was done by ruthealee who deserves the preponderance of credit.
 # I'm updating this list for the rhcsa exam objectives located here: https://www.redhat.com/en/services/training/ex200-red-hat-certified-system-administrator-rhcsa-exam?section=Objectives
-# I left some of the objectives that were not present in the latest objectives list (08/30/2022 at link above) out of an abundance of caution and paranoia.
+# I left some of the deprecated objectives that were not present in the latest list (08/30/2022 at link above) out of an abundance of caution and paranoia.
 # Can I study too much? I think not.
 # I've marked the old objectives accordingly for the reader's awareness. Ctrl+F for "old" (case insensitive).... Ctrl+G and Ctrl+Shift+G cycles down and up through results.
 
@@ -93,6 +93,7 @@ Locate, read, and use system documentation including man, info, and files in /us
 
 Create simple shell scripts
 ===========================
+
 Conditionally execute code (use of: if, test, [], etc.)
 	more?
 	
@@ -108,6 +109,7 @@ Processing output of shell commands within a script
 
 OPERATE RUNNING SYSTEMS
 ========================
+
 Boot, reboot, and shut down a system normally
 	boot
 	reboot
@@ -152,6 +154,7 @@ Securely transfer files between systems
 	
 Configure local storage
 =======================
+
 (OLD) List, create, delete, and set partition type for primary, extended, and logical partitions
 	fdisk -l
 	fdisk /dev/XXX
@@ -228,6 +231,7 @@ Add new partitions and logical volumes, and swap to a system non-destructively
 
 Create and configure file systems
 =================================
+
 (Old) Create, mount, unmount, and use ext2, ext3, and ext4 file systems
 	mkfs.ext[2|3|4] /dev/XXXX (for LVM: /dev/mapper/vg-lv)
 	mkswap
@@ -565,6 +569,7 @@ Diagnose and address routine SELinux policy violations
 	
 Manage containers
 =================
+
 Find and retrieve container images from a remote registry
 	more?
 	
