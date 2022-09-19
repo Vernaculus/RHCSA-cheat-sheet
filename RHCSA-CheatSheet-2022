@@ -44,6 +44,7 @@ Access remote systems using ssh and VNC (VNC Portion is OLD)
 		required packages are tigervnc ; tigervnc-server ; vino (GNOME)
 	scp 
 	sftp
+	chvt # - change virtual terminal session -- GUI when active is tty1
 
 (OLD - different verbiage) Log in and switch users in multiuser runlevels
 	su -
