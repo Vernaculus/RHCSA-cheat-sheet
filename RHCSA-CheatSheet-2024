@@ -45,6 +45,8 @@ Access remote systems using ssh and VNC (VNC Portion is OLD)
 	sftp
 	chvt # - change virtual terminal session -- GUI when active is tty1
 
+	who or w - see which users currently are active on which terminals
+
 (OLD - different verbiage) Log in and switch users in multiuser runlevels
 	su -
 	su
@@ -90,6 +92,7 @@ Locate, read, and use system documentation including man, info, and files in /us
 	man -k [_selinux |command]
 	appropos [command]
 	ls /usr/share/doc | grep [command]
+	info - 
 
 Create simple shell scripts
 ===========================
